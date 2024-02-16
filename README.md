@@ -1,7 +1,7 @@
 # Booky
 
 ## Overview
-**Booky** is an addon for World of Warcraft, that creates an immersive experience for all books, scrolls and other lore items, that would be otherwise displayed on the lefthand side in a small panel.
+**Booky** is an addon for World of Warcraft, that creates an immersive reading experience for all books, scrolls and other lore items, that would be otherwise displayed on the lefthand side in a small panel.
 
 (Minimize button shows the UI. This button will be removed in coming versions.)
 
