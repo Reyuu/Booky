@@ -8,13 +8,13 @@
 		<DisabledFont style="GameFontDisable"/>
 	</Button>
     <Frame name="BookyFrame" hidden="true" inherits="BackdropTemplate" frameStrata="HIGH">
-        <Size x="480" y="340" />
+        <Size x="480" y="440" />
                 <Anchors>
                     <Anchor x="0" y="0" point="CENTER" />
                 </Anchors>
         <Frames>
             <SimpleHTML name="BookySimpleHTML">
-                <Size x="440" y="300" />
+                <Size x="440" y="400" />
                 <Anchors>
                     <Anchor x="0" y="0" point="CENTER" />
                 </Anchors>
@@ -53,9 +53,9 @@
                 </Scripts>
             </Button>
             <Button name="BookyShowDefaultUIButton" inherits="UIPanelHideButtonNoScripts" text="o">
-                <Size x="24" y="24" />
+                <Size x="16" y="16" />
                 <Anchors>
-                    <Anchor x="-24" y="24" point="TOPRIGHT" />
+                    <Anchor x="-24" y="20" point="TOPRIGHT" />
                 </Anchors>
                 <Scripts>
                     <OnClick>

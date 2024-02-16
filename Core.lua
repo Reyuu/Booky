@@ -1,7 +1,7 @@
 Booky = LibStub("AceAddon-3.0"):NewAddon("Booky", "AceConsole-3.0", "AceEvent-3.0")
 local _, L = ...
 local pageCounter = 0
-local debug = false
+local debug = true
 
 function _DebugPrint(s)
     if debug then
@@ -37,21 +37,25 @@ function Booky:ReadingTextReady()
     _DebugPrint("Reading ready")
     local title = ItemTextGetItem()
     local text = ItemTextGetText()
-    -- replace to entities, otherwise, text will display weird
-    text = text:gsub("&", "&amp;")
-    text = text:gsub("<", "&lt;")
-    text = text:gsub(">", "&gt;")
-    text = text:gsub("\"", "&quot;")
-    text = text:gsub("&lt;", "\124cnORANGE_FONT_COLOR&:lt;")
-    text = text:gsub("&gt;", "&gt;\124r")
     local new_text = ""
-    for w in text:gmatch("([^\n\n]+)") do
-        new_text = new_text .. "<p>"..w.."</p><br />"
+    if (string.find(text, "HTML") or string.find(text, "html")) then -- hacky way to detect if the book as it's own formatting, most likely due to images
+        new_text = text
+    else
+        -- replace to entities, otherwise, text will display weird
+        text = text:gsub("&", "&amp;")
+        text = text:gsub("<", "&lt;")
+        text = text:gsub(">", "&gt;")
+        text = text:gsub("\"", "&quot;")
+        text = text:gsub("&lt;", "|cnORANGE_FONT_COLOR:&lt;")
+        text = text:gsub("&gt;", "&gt;|r")
+        for w in text:gmatch("([^\n\n]+)") do
+            new_text = new_text .. "<p>"..w.."</p><br/>"
+        end
+        new_text = "<html><body><h1>"..title.."</h1>"..new_text.."</body></html>"
     end
     _DebugPrint(title)
     _DebugPrint(new_text)
-    _DebugPrint("<html><body><h1>"..title.."</h1><br />"..new_text.."</body></html>")
-    BookySimpleHTML:SetText("<html><body><h1>"..title.."</h1><br />"..new_text.."</body></html>")
+    BookySimpleHTML:SetText(new_text)
     ItemTextFrame:SetAlpha(0)
     if pageCounter == 1 then
         BookyPreviousPageButton:Hide()
